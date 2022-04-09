@@ -1,18 +1,46 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+int toprak=A0;  
+int yled=7;
+int pompa=8;
+int deger;
+void setup() {
+pinMode(yled,OUTPUT);
+pinMode(pompa,OUTPUT);
+Serial.begin(9600);
+}
+void loop() {
+deger=analogRead(toprak);
+Serial.println(deger);
+delay(100);
+if  (deger>1000)
+{
 
-# Other files and folders
-.settings/
+digitalWrite(yled,LOW);
+digitalWrite(pompa,HIGH);
+Serial.println(deger);
+Serial.println("cok kuru");
+ }
+else if (deger>800)
+{
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+digitalWrite(yled,LOW);
+digitalWrite(pompa,HIGH);
+Serial.println(deger);
+Serial.println("hafif kuru");
+ }
+ else if (deger>400)
+{
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+digitalWrite(yled,LOW);
+digitalWrite(pompa,LOW);
+Serial.println(deger);
+Serial.println("hafif nemli");
+ }
+ else
+ {
+
+digitalWrite(yled,1);
+digitalWrite(pompa,LOW);
+Serial.println(deger);
+Serial.println("cok ıslak");
+  }
+}
